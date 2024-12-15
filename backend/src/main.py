@@ -9,6 +9,7 @@ from typing import Annotated
 from users.users_model import authenticate_user, create_access_token
 from users.users_schema import Token
 import uvicorn
+from fastapi.middleware.cors import CORSMiddleware
 
 
 @asynccontextmanager
@@ -22,6 +23,18 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 app.include_router(users_router)
 app.include_router(documents_router)
+
+origins = [
+    "http://localhost:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.post("/token")
@@ -41,4 +54,4 @@ async def login_for_access_token(
 
 if __name__ == "__main__":
     print(database.database_url)
-    uvicorn.run(app, host="0.0.0.0")
+    uvicorn.run(app, host="0.0.0.0", port=8000)

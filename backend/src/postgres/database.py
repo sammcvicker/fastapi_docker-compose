@@ -5,7 +5,7 @@ logger = logging.getLogger(__name__)
 
 # dropdb -U sam "fastapi_docker-compose"
 # createdb -U sam -h localhost "my-new-database"
-DATABASE_URL = "postgresql://sam:1234@localhost:5432/fastapi_docker-compose"
+DATABASE_URL = "postgresql://sam:1234@postgres:5432/fastapi_docker-compose"
 
 SCHEMA = """--sql
 -- Users table to store user information
