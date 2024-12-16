@@ -21,6 +21,8 @@ services:
       - "8000:8000"
     volumes:
       - ./backend:/app
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
     depends_on:
       postgres:
         condition: service_healthy

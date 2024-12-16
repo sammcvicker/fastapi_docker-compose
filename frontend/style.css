@@ -1,3 +1,108 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+#container {
+  transition: top 500ms;
+}
+
+h1 {
+  text-transform: capitalize;
+  text-align: left;
+  max-width: 300px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid black;
+  outline: none;
+  transition: outline 100ms;
+  outline: 0 solid #333333;
+}
+
+form input:focus {
+  outline: 2px solid #333333;
+}
+
+form button {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #333333;
+}
+
+#logout-form {
+  position: fixed;
+  top: 0;
+  right: 0;
+  max-width: 300px;
+  margin: 10px;
+  margin-right: 20px;
+}
+
+#logout-form button {
+  background-color: white;
+  color: black;
+  border: 0 solid transparent;
+}
+
+#logout-form button:hover {
+  color: #333333;
+  text-decoration: underline;
+}
+
+#login-form {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 10px;
+  max-width: 300px;
+  margin: auto;
+  margin-bottom: 40px;
+}
+
+#prompt-form {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 10px;
+  max-width: 300px;
+  margin: auto;
+  margin-bottom: 40px;
+}
+
+#prompt-response {
+  max-width: 600px;
+  margin: auto;
+  text-align: justify;
+  hyphens: auto;
+  line-height: 1.5em;
 }
