@@ -1,3 +1,4 @@
+import os
 import asyncpg
 import logging
 
@@ -5,7 +6,8 @@ logger = logging.getLogger(__name__)
 
 # dropdb -U sam "fastapi_docker-compose"
 # createdb -U sam -h localhost "my-new-database"
-DATABASE_URL = "postgresql://sam:1234@postgres:5432/fastapi_docker-compose"
+# DATABASE_URL = "postgresql://sam:1234@postgres:5432/fastapi_docker-compose"
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
 SCHEMA = """--sql
 -- Users table to store user information
@@ -34,7 +36,7 @@ CREATE INDEX IF NOT EXISTS idx_documents_user_id ON documents(user_id);
 
 class Postgres:
     def __init__(self, database_url: str):
-        self.database_url = database_url
+        self.database_url = DATABASE_URL
 
     async def connect(self):
         self.pool = await asyncpg.create_pool(self.database_url)

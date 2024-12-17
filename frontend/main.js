@@ -28,7 +28,7 @@ async function is_authenticated() {
       return false;
     }
   } catch (error) {
-    window.alert("Error: " + error);
+    window.alert("Authentication Error: " + error);
   }
 }
 
@@ -40,10 +40,14 @@ async function refresh_is_authenticated() {
     welcomeMessage.innerHTML = `Hey, ${user_info.username}`;
     loginForm.style.display = "none";
     promptForm.style.display = "block";
+    promptForm.reset();
+    logoutForm.style.display = "block";
   } else {
     welcomeMessage.innerHTML = "Who are you?";
     loginForm.style.display = "block";
+    loginForm.reset();
     promptForm.style.display = "none";
+    logoutForm.style.display = "none";
   }
   update_vertical_centering();
 }
@@ -64,10 +68,16 @@ async function login() {
       body: new URLSearchParams(formData),
     });
     const data = await response.json();
+    if (data.access_token) {
+      console.log("Login Success!")
+    } else {
+      loginForm.reset();
+      window.alert("Incorrect username or password");
+      console.log("Login Failed!");
+    }
     document.cookie = `access_token=${data.access_token}`;
-    // window.alert("Login successful");
   } catch (error) {
-    window.alert("Error: " + error);
+    window.alert("Error Logging In: " + error);
   }
   refresh_is_authenticated();
 }

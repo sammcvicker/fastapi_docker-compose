@@ -1,14 +1,11 @@
-from typing import Optional, List, Annotated
-from fastapi import APIRouter, Depends, HTTPException, status
-from users import users_model
-from users.users_schema import User, UserInDB
+from typing import Annotated
+from fastapi import APIRouter, Depends
+from users.users_schema import User
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from users.users_model import (
     get_current_user,
     insert_user,
 )
-from users.users_schema import Token
-from datetime import timedelta
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 

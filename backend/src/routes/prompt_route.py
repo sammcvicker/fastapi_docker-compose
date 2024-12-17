@@ -1,9 +1,8 @@
 from typing import Annotated
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from users.users_schema import User
 from users.users_model import get_current_user
 from pydantic import BaseModel
-import os
 import anthropic
 
 prompt_router = APIRouter(prefix="/prompt")
@@ -28,7 +27,7 @@ def make_user_message(user_message: str) -> dict:
 @prompt_router.put("", response_model=dict)
 async def put_new_prompt(
     current_user: Annotated[User, Depends(get_current_user)],
-    form_data: Annotated[PromptPutRequestForm, Depends()],
+    form_data: PromptPutRequestForm,
 ):
     client = anthropic.Anthropic()
     messages = [make_user_message(form_data.prompt)]
