@@ -23,7 +23,8 @@ async def create_new_user(
     return {"detail": f"User {user.username} created successfully"}
 
 
-# Important that this uses the User response_model and not the UserInDB model (no hashed_password returned)
+# Important that this uses the User response_model and not the UserInDB model
+# (no hashed_password returned)
 @users_router.get("/me/", response_model=User)
 async def read_users_me(
     current_user: Annotated[User, Depends(get_current_user)],
