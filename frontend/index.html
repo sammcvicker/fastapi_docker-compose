@@ -7,15 +7,21 @@
     <title>Fullstack Demo</title>
   </head>
   <body>
-    <div class="container">
-      <h1>fastapi_docker-compose</h1>
+    <form id="logout-form">
+      <button type="submit">Logout</button>
+    </form>
+    <div class="container" id="container">
+      <h1 id="welcome-message"></h1>
       <form id="login-form">
         <input type="text" name="username" placeholder="Username" />
         <input type="password" name="password" placeholder="Password" />
         <button type="submit">Login</button>
       </form>
-      <button id="load-documents">Load Documents</button>
-      <div id="documents"></div>
+      <form id="prompt-form">
+        <input type="text" name="prompt" placeholder="Prompt" />
+        <button type="submit">Submit</button>
+      </form>
+      <div id="prompt-response"></div>
     </div>
     <script type="module" src="/main.js"></script>
   </body>

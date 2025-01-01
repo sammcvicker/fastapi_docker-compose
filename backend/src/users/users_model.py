@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, timezone
 from fastapi import Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.security import OAuth2PasswordBearer
 from jwt.exceptions import InvalidTokenError
 from passlib.context import CryptContext
 from postgres.database import database
@@ -8,10 +8,10 @@ from typing import Annotated
 from users.users_schema import User, UserInDB, TokenData
 from asyncpg.exceptions import UniqueViolationError
 import jwt
+import os
 
-# to get a string like this run:
-# openssl rand -hex 32
-SECRET_KEY = "087df75fe34621f28852d4352ea326ffb52cc5eb9baa18dcbc5534c3d7af6abd"
+# Secret key changed when moved to .env
+SECRET_KEY = os.environ.get("SECRET_KEY")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 

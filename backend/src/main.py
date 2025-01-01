@@ -5,6 +5,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from postgres.database import database
 from routes.users_route import users_router
 from routes.documents_route import documents_router
+from routes.prompt_route import prompt_router
 from typing import Annotated
 from users.users_model import authenticate_user, create_access_token
 from users.users_schema import Token
@@ -23,6 +24,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 app.include_router(users_router)
 app.include_router(documents_router)
+app.include_router(prompt_router)
 
 origins = [
     "http://localhost:5173",
